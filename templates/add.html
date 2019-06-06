@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="static/mystyle.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  {% block content %}
+<div class="topnav">
+  <a href="{% url 'index' %}">Home</a>
+  <a class="active" href="{% url 'add' %}">Add Data</a>
+  <a href="{% url 'view' %}">View Data</a>
+</div>
+
+<div style="padding-left:16px">
+ <center>
+   <h1>Add Data</h1><br>
+  <form method="POST" action="/submit">
+      {% csrf_token %}
+    <input type="text" name="name" placeholder="Name" class="form-control" style="width:200px">
+    <br>
+    <input type="text" name="mobile" placeholder="Mobile No" class="form-control" maxlength="10" style="width:200px">
+    <br>
+    <input type="text" name="age" placeholder="Age" class="form-control" maxlength="2" style="width:200px">
+    <br>
+    <textarea name="address" rows="5" cols="10" placeholder="Address" class="form-control" style="width:200px"></textarea>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-success">
+  </form> 
+ </center>
+</div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'mystyle.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% block content %}
+<div class="topnav">
+  <a href="{% url 'index' %}">Home</a>
+  <a href="{% url 'add' %}">Add Data</a>
+  <a  class="active" href="{% url 'view' %}">View Data</a>
+</div>
+{% csrf_token %}
+    <center>
+        <h1>Users Information</h1><br>
+        <div class="container">
+            {% if datas %}          
+            <table class="table table-bordered">
+                <thead style="text-align: center">
+                  <tr>
+                      <th >Name</th>
+                      <th>Mobile No</th>
+                      <th>Age</th>
+                      <th>Address</th>
+                  </tr>
+                  </thead>
+                  {% for emp in datas %}
+              <tbody class="table table-bordered" style="text-align: center">
+                <tr style="font-weight:bold">
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.mobile}}</td>
+                    <td>{{emp.age}}</td>
+                    <td>{{emp.address}}</td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+            {% else %}
+           <p>No Records found</p>
+           {% endif %}
+           {% endblock %}
+          </div>
+    </center>
+</body>
+</html>
